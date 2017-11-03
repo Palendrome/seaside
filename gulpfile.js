@@ -3,7 +3,9 @@ watch = require('gulp-watch'),
 postcss = require('gulp-postcss'),
 autoprefixer = require('autoprefixer'),
 cssvars = require('postcss-simple-vars'),
-nested = require('postcss-nested');
+nested = require('postcss-nested'),
+browserSync = require('browser-sync').create(),
+cssImport = require('postcss-import');
 
 
 gulp.task('default', function() {
@@ -15,21 +17,33 @@ gulp.task('html', function(){
 });
 
 gulp.task('styles', function(){	
-	return gulp.src('styles/styles.css')
 	
-	.pipe(postcss([cssvars, nested, autoprefixer]))
-	.pipe(gulp.dest('temp/styles/'));
+	return gulp.src('./app/assets/styles/styles.css')		
+		.pipe(postcss([cssImport, cssvars, nested, autoprefixer]))
+		.pipe(gulp.dest('./app/temp/styles/'));
 });
 
-gulp.task('watch', function() 
-{	
-	watch('video.html', function() 
+gulp.task('watch', function()
+{
+	browserSync.init({		
+		server: {
+			baseDir: "app"
+		}
+	}); 
+	
+	watch('./app/index.html', function() 
 	{
-		gulp.start('html');
+		browserSync.reload();
 	});
 	
-	watch('styles/**/*.css', function()
+	watch('./app/assets/styles/**/*.css', function()
 	{
-		gulp.start('styles');
+		console.log("styles Watch");
+		gulp.start('cssInject');
 	});
+});
+
+gulp.task('cssInject',['styles'], function() {
+	return gulp.src('app/temp/styles/styles.css')
+		.pipe(browserSync.stream());
 });
