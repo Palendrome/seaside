@@ -8,14 +8,26 @@
 	  <link rel="stylesheet" href="/temp/styles/styles.css"> 	  
 	</head>
 	<body>
-	
-	<div class="large-hero">	
-		<img src="/assets/images/beach_sally_3840_.jpg">
-		<div class="large-hero__text-content">
-			<h1 class="large-hero__title">Guardians of the Deep</h1>
-			<h2 class="large-hero__subtitle">One trip away</h2>
-			<p>We create soul restoring journeys that inspire you to be you.</p>
-			<p><a href="#">Get started Today</a></p>
+	<header>
+		<a href="#" class="btn">Get in Touch</a>
+	</header>	
+		<div class="large-hero">
+			<picture>
+				<source srcset="assets/images/beach_sally_3840.jpg" media="(min-width:640px")>
+				<source srcset="assets/images/beach_sally_medium.jpg" media="(min-width:640px")>
+				<img src="assets/images/beach_sally_small.jpg" alt="Sally on the beach crop">
+			</picture>
+			
+			<!-- <img src="/assets/images/beach_sally_3840_.jpg"> -->
+			
+			<div class="large-hero__text-content">
+				<h1 class="large-hero__title">Guardians of the Deep</h1>
+				<h2 class="large-hero__subtitle">One trip away</h2>
+				<p class="large-hero__description">We create soul restoring journeys that inspire you to be you.</p>
+				<p><a href="#" class="btn btn--orange btn--large">Get started Today</a></p>
+			</div>
 		</div>
+		<footer>
+		<p>Copyright &copy; 2017 Guardians of the Deep. All rights reserved. <a href="#" class="btn btn--orange">Get in Touch</a></p>
 	</body>
 </html>
